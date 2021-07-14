@@ -1,35 +1,81 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config
 cluster:
-  clusterName: "jx-boot"
-  environmentGitOwner: "m714990877"
+  clusterName: kubernetes
+  devEnvApprovers:
+  - m714990877
+  environmentGitOwner: m714990877
   environmentGitPublic: true
-  project: "devops-26"
-  provider: gke
-  zone: "us-east1"
-gitops: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx-git-operator
+  provider: kubernetes
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: jenkins.pj.dhc.com.cn
+    externalDNS: false
+    ignoreLoadBalancer: true
+    namespaceSubDomain: -jx.
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+  repository: environment-mycluster-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-mycluster-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-mycluster-production
+gitops: true
 ingress:
-  domain: "jenkins.pj.paas.dhc.com.cn"
+  domain: jenkins.pj.dhc.com.cn
   externalDNS: false
+  ignoreLoadBalancer: true
+  namespaceSubDomain: -jx.
   tls:
     email: ""
     enabled: false
     production: false
 kaniko: true
+repository: nexus
 secretStorage: local
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
-    enabled: true
+    enabled: false
     url: ""
   reports:
-    enabled: true
+    enabled: false
     url: ""
   repository:
-    enabled: true
+    enabled: false
     url: ""
+vault: {}
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
-  ref: "master"
+  ref: v1.0.482
   url: https://github.com/jenkins-x/jenkins-x-versions.git
-webhook: lighthouse
+webhook: prow
