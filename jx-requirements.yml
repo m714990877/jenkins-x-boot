@@ -1,17 +1,17 @@
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: false
-  project: ""
+  clusterName: "jx-boot"
+  environmentGitOwner: "m714990877"
+  environmentGitPublic: true
+  project: "devops-26"
   provider: gke
-  zone: ""
+  zone: "us-east1"
 gitops: true
 environments:
 - key: dev
 - key: staging
 - key: production
 ingress:
-  domain: ""
+  domain: "jenkins.pj.paas.dhc.com.cn"
   externalDNS: false
   tls:
     email: ""
@@ -21,13 +21,13 @@ kaniko: true
 secretStorage: local
 storage:
   logs:
-    enabled: false
+    enabled: true
     url: ""
   reports:
-    enabled: false
+    enabled: true
     url: ""
   repository:
-    enabled: false
+    enabled: true
     url: ""
 versionStream:
   ref: "master"
